@@ -2,14 +2,14 @@ package com.example.gymentry_app.Activitys;
 
 import android.app.Fragment;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.gymentry_app.Fragments.InformationFragment;
+
 import com.example.gymentry_app.R;
-import com.example.gymentry_app.ui.gallery.GalleryFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -24,7 +24,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import com.example.gymentry_app.Fragments.InformationFragment;
+import com.example.gymentry_app.Fragments.QrFragment;
+import com.example.gymentry_app.Fragments.MainFragment;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+InformationFragment.OnFragmentInteractionListener, QrFragment.OnFragmentInteractionListener, MainFragment.OnFragmentInteractionListener{
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -73,15 +78,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
+        InformationFragment fragment = null;
         Boolean selected_fragment = false;
 
         if (id == R.id.nav_inicio) {
             selected_fragment = true;
-            fragment = new CoursesFragment();
+            fragment = new MainFragment();
         } else if (id == R.id.nav_qrgenerator) {
             selected_fragment = true;
-            fragment = new BlogsFragment();
+            fragment = new QrFragment();
         } else if (id == R.id.nav_Informacion) {
             selected_fragment = true;
             fragment = new InformationFragment();
@@ -99,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
